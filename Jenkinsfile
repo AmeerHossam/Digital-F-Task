@@ -14,8 +14,10 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                    sh 'kubectl apply -Rf ./kubernetes-files'
-
+                script {
+                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
+                    kubernetesDeploy(configs: "service.yaml", kubeconfigId: "kubernetes")
+                }
             }
         }
     }
