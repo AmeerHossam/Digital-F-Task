@@ -1,0 +1,20 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-code
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: spring-code
+  template:
+    metadata:
+      labels:
+        app: spring-code
+    spec:
+      containers:
+        - name: spring-code
+          image: sudo1amir/springcode:v1
+          ports:
+          - containerPort: 3000
