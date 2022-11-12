@@ -1,7 +1,7 @@
 pipeline{
     agent any
     stages{
-        stage("CI"){
+        stage("Build stage"){
             steps{
                 withCredentials([usernamePassword(credentialsId :'DockerHubCred',usernameVariable :'USER',passwordVariable :'PASSWORD')]){
 
@@ -9,6 +9,13 @@ pipeline{
                 sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
                 sh 'docker push sudo1amir/springcode:v1'
                 }
+            }
+        }
+
+        stage("Deployment stage"){
+            steps{
+                    sh 'kubectl apply -Rf ./depl-files'
+
             }
         }
     }
