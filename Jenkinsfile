@@ -1,23 +1,23 @@
 pipeline{
     agent any
-    stages{
-        stage('Unit Tests'){ 
-            steps{
-                sh "java -jar ./src/test/java/com/example/demo/DemoApplicationTests.java" 
-            }
-        }
+    // stages{
+    //     stage('Unit Tests'){ 
+    //         steps{
+    //             sh "java -jar ./src/test/java/com/example/demo/DemoApplicationTests.java" 
+    //         }
+    //     }
 
-        stage("SonarQube Stage"){
-            steps {
+    //     stage("SonarQube Stage"){
+    //         steps {
             
-                script {
-                    scannerHome = tool 'SonarQube'
-                }
-                    withSonarQubeEnv('SonarQube Scanner') {
-                        sh "${scannerHome}/bin/sonar-scanner"
-                    }  
-                }
-            }
+    //             script {
+    //                 scannerHome = tool 'SonarQube'
+    //             }
+    //                 withSonarQubeEnv('SonarQube Scanner') {
+    //                     sh "${scannerHome}/bin/sonar-scanner"
+    //                 }  
+    //             }
+    //         }
         stage("Build Stage"){
             steps{
                 withCredentials([usernamePassword(credentialsId :'DockerHubCred',usernameVariable :'USER',passwordVariable :'PASSWORD')]){
@@ -29,11 +29,11 @@ pipeline{
         }
         }
 
-        stage("Deployment"){
-                steps{
-                    sh 'kubectl apply -Rf ./depl-files'
+        // stage("Deployment"){
+        //         steps{
+        //             sh 'kubectl apply -Rf ./depl-files'
 
-            }
-        }
-    }
+        //     }
+        // }
+    // }
 }
