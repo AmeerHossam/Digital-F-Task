@@ -13,7 +13,6 @@ spec:
   
   template:
     metadata:
-      name: spring-app
       labels:
         app: spring-code
 
@@ -21,4 +20,7 @@ spec:
     spec:
       containers:
       - name : spring-app
-        image : sudo1amir/springcode:v1
+        image : sudo1amir/springdf:v1
+        ports:
+        - name: app-port
+          containerPort: 8080
