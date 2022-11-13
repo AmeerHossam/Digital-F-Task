@@ -14,10 +14,7 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                script {
-                    kubernetesDeploy(configs: "deployment.yaml", kubeconfigId: "kubernetes")
-                    kubernetesDeploy(configs: "service.yaml", kubeconfigId: "kubernetes")
-                }
+                    sh 'kubectl apply -Rf ./depl-files -n dev'
             }
         }
     }
