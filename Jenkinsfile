@@ -14,7 +14,7 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                    sh 'kubectl apply -Rf ./depl-files -n dev'
+                    sh 'kubectl apply -Rf ./depl-files --context minikube'
             }
         }
     }
