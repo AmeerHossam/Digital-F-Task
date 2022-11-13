@@ -1,20 +1,24 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: spring-code
+  name: spring-app
+  labels:
+    app: spring-code
+
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: spring-code
+  
   template:
     metadata:
+      name: spring-app
       labels:
         app: spring-code
+
+
     spec:
       containers:
-        - name: spring-code
-          image: sudo1amir/springcode:v1
-          ports:
-          - containerPort: 3000
+      - name : spring-app
+        image : sudo1amir/springcode:v1

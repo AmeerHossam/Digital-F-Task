@@ -5,9 +5,9 @@ pipeline{
             steps{
                 withCredentials([usernamePassword(credentialsId :'DockerHubCred',usernameVariable :'USER',passwordVariable :'PASSWORD')]){
 
-                sh 'docker build -t sudo1amir/springcode:v1 .'
+                sh 'docker build -t sudo1amir/springdf:v1 ./dockerfile ./'
                 sh 'echo $PASSWORD | docker login -u $USER --password-stdin'
-                sh 'docker push sudo1amir/springcode:v1'
+                sh 'docker push sudo1amir/springdf:v1'
                 }
             }
         }
