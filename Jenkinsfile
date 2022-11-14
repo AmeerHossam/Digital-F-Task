@@ -14,7 +14,7 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                    sh 'sudo kubectl apply -Rf ./kubernetes-files --context minikube'
+                    sh ' kubectl apply -Rf ./kubernetes-files '
             }
         }
     }
