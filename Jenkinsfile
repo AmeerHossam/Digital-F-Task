@@ -14,7 +14,7 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                    sh 'echo "hello world"'
+                    sh ' kubectl apply -Rf ./kubernetes-files '
             }
         }
     }
