@@ -14,7 +14,7 @@ pipeline{
 
         stage("Deployment stage"){
             steps{
-                    sh 'kubectl apply -f ./k8s'
+                    sh 'kubectl apply -f ./k8s -n jenkins'
             }
         }
     }
