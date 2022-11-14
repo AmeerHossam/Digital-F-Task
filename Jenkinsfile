@@ -13,8 +13,35 @@ pipeline{
         }
 
         stage("Deployment stage"){
-            steps{
-                    sh ' kubectl apply -Rf ./kubernetes-files '
+            kubernetes{
+                yaml '''
+                    apiVersion: apps/v1
+                    kind: Deployment
+                    metadata:
+                      name: spring-app
+                      labels:
+                        app: spring-code
+                    
+                    spec:
+                      replicas: 1
+                      selector:
+                        matchLabels:
+                          app: spring-code
+                    
+                      template:
+                        metadata:
+                          labels:
+                            app: spring-code
+                    
+                    
+                        spec:
+                          containers:
+                          - name : spring-app
+                            image : nginx
+                            ports:
+                            - name: app-port
+                              containerPort: 80
+                '''
             }
         }
     }
