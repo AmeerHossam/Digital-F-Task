@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
       - name : spring-app
-        image : sudo1amir/springdf:v1
+        image : nginx
         ports:
         - name: app-port
-          containerPort: 8080
+          containerPort: 80
